@@ -30,7 +30,7 @@ namespace HS {
 
   ErrMsgIndex msg_idx;
 
-  OC::SemitoneQuantizer input_quant[ADC_CHANNEL_LAST];
+  util::SemitoneQuantizer input_quant[ADC_CHANNEL_LAST];
 
   // All of the HS:: globals should be instantiated here
   TuringMachine user_turing_machines[TURING_MACHINE_COUNT];
