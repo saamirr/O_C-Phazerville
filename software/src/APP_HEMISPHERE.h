@@ -1669,7 +1669,7 @@ size_t AppHemisphere::RestoreAppData(util::StreamBufferReader &stream_buffer) {
 }
 #else
 size_t AppHemisphere::SaveAppData(util::StreamBufferWriter &stream_buffer) const {
-  manager.StoreExtras();
+  StoreExtras();
 
   for (int i = 0; i < HEM_NR_OF_PRESETS + 1; ++i) {
     hem_presets[i].Save(stream_buffer);
@@ -1682,7 +1682,8 @@ size_t AppHemisphere::RestoreAppData(util::StreamBufferReader &stream_buffer) {
     hem_presets[i].Restore(stream_buffer);
   }
 
-  manager.LoadExtras();
+  // using secret hidden preset for extra data
+  LoadExtras();
 
   return stream_buffer.read();
 }
