@@ -485,6 +485,7 @@ struct MIDIFrame {
 struct IOFrame {
     // settings
     bool autoMIDIOut = false;
+    bool synctrig = false;
     uint8_t clockskip[DAC_CHANNEL_COUNT] = {0};
     int8_t output_slew[DAC_CHANNEL_COUNT] = {0};
 
