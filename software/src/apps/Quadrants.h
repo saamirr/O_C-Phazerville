@@ -93,6 +93,8 @@ public:
 
         if (preset_id < 0)
           LoadFromPreset(0);
+
+        for (auto& env : HS::env_) env.reset();
     }
     void Suspend() {
         if (preset_id >= 0) {
