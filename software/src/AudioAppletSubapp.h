@@ -95,7 +95,6 @@ public:
 
   void mainloop() {
     static bool _rec = false;
-    static int _rec_size = 0;
 
     for (size_t slot = 0; slot < Slots; slot++) {
       if (IsStereo(slot)) {
@@ -119,6 +118,7 @@ public:
       if (_wavfile) {
         wav_header hdr = wav_header(true);
         wav_data_header datahdr = wav_data_header(true);
+        // TODO: acid chunk for tempo
 
         _wavfile.write((const uint8_t*)&hdr, sizeof(hdr));
         _wavfile.write((const uint8_t*)&datahdr, sizeof(datahdr));
@@ -131,7 +131,7 @@ public:
         record_active = false;
     } else if (!record_active && _rec) {
       // stopping
-      OC::AudioIO::RecordFlush(_wavfile);
+      _rec_size += OC::AudioIO::RecordFlush(_wavfile);
       OC::AudioIO::RecordStop();
 
       // write data size to chunk headers
@@ -140,6 +140,8 @@ public:
       _wavfile.write((const uint8_t*)&wavsize, 4);
       _wavfile.seek(40);
       _wavfile.write((const uint8_t*)&_rec_size, 4);
+
+      // TODO: acid chunk for tempo
 
       _wavfile.close();
       //_rec_size = 0;
@@ -155,9 +157,11 @@ public:
     if (RECORD_CONFIG == view_state) {
       gfxHeader("Record To WAV");
       gfxPrint(5, 15, _wavfilename);
-      gfxIcon(45, 15, record_active ? RECORD_ICON : LEFT_ICON);
+      gfxIcon(49, 15, record_active ? RECORD_ICON : LEFT_ICON);
 
-      gfxPrint(1, 35, "Buffer: ");
+      gfxPrint(1, 35, "Written: ");
+      gfxPrint(_rec_size);
+      gfxPrint(1, 45, "Buffer: ");
       gfxPrint(OC::AudioIO::GetRecordQueueSize());
       return;
     }
@@ -583,6 +587,7 @@ private:
   char _wavfilename[8] = "100.WAV";
   File _wavfile;
   bool record_active = false;
+  int _rec_size = 0;
 
   bool ready_for_press = false;
   size_t total, user, free;
