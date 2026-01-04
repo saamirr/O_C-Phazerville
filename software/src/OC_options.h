@@ -29,6 +29,10 @@
 /* ------------ use DAC8564 -------------------------------------------------------------------------  */
 //#define DAC8564
 
+// If you accidentally get the C or D versions of the 8-channel DAC chip,
+// it has a max output of 5V instead of 2.5V
+// This divides by two to correct that.
+#define DAC8568_5V_RANGE
 
 /* ------------ uncomment for use with Plum Audio VOR enabled versions (OCP, 1uO_c v2, 4Robots) -----  */
 //#define VOR

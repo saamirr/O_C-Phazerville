@@ -18,7 +18,11 @@ static inline void dac8568_raw_write(uint32_t data) {
   LPSPI4_TDR = data; // assume writes always at pace SPI FIFO can absorb
 }
 static inline void dac8568_set_channel(uint32_t channel, uint32_t data) {
+#ifdef DAC8568_5V_RANGE
+  dac8568_raw_write(0x03000000 | ((channel & 0x07) << 20) | (((data & 0xFFFF) / 2) << 4));
+#else
   dac8568_raw_write(0x03000000 | ((channel & 0x07) << 20) | ((data & 0xFFFF) << 4));
+#endif
 }
 #endif
 extern void SPI_init();
