@@ -48,6 +48,7 @@ Only 2 applets are visible at a given time (although all are active). To swap vi
 | Action    | Gesture    |   Notes   |
 | --------- |:----------:|:---------:|
 | **Open Overview** | Press A + Y or B + X together (diagonal button combos) | Monitor input and output voltages of all 4 quadrants at once |
+| **Change Left/Right applet** | Turn corresponding encoder while pressing Y or X | Quickly scrub through available applets without menu diving|
 | **Change NW applet**  | Double press A button to enter help/config screen. Select applet name with RIGHT Encoder cursor and press to enter applet selection menu. Scroll with RIGHT encoder and press to select. | Press A/B/X/Y to escape without changing applet.   |
 | **Change NE applet**  | Double press B button to enter help/config screen. Select applet name with RIGHT Encoder cursor and press to enter applet selection menu. Scroll with RIGHT encoder and press to select. | Press A/B/X/Y to escape without changing applet.   |
 | **Change SW applet**  | Double press X button to enter help/config screen. Select applet name with RIGHT Encoder cursor and press to enter applet selection menu. Scroll with RIGHT encoder and press to select. | Press A/B/X/Y to escape without changing applet.    |
